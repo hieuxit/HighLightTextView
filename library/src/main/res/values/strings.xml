@@ -1,4 +1,3 @@
 <resources>
     <string name="app_name">HighLightTextView</string>
-    <string name="text1">Text 1 <b> bold </b></string>
 </resources>
