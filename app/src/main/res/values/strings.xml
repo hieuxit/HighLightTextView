@@ -1,4 +1,4 @@
 <resources>
     <string name="app_name">HighLightTextView</string>
-    <string name="text1">Text 1 <b> bold </b></string>
+    <string name="text1"><![CDATA[ Text 1 <tag style=\"bold|italic|underline\" size=\"20sp\" color=\"#8f0a\"> highlight text </tag> ]]></string>
 </resources>

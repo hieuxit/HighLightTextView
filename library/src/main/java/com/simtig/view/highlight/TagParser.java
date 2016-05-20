@@ -1,6 +1,5 @@
 package com.simtig.view.highlight;
 
-import android.graphics.Color;
 import android.text.TextUtils;
 import android.util.DisplayMetrics;
 
@@ -21,7 +20,6 @@ import java.util.regex.Pattern;
 public class TagParser {
     // Pattern for tag
     private static final Pattern TAG_PATTERN = Pattern.compile("<tag\\b[^>]*>(.*?)</tag>");
-    private static final Pattern COLOR_PATTERN = Pattern.compile("^#[\\da-fA-F]{6,8}$");
 
     public static List<Tag> parse(String input, DisplayMetrics dm) {
 
@@ -70,11 +68,17 @@ public class TagParser {
 
             // get color attribute
             String colorString = parser.getAttributeValue(ns, "color");
-            int color = parseColor(colorString);
+            Integer color = null;
+            if (!TextUtils.isEmpty(colorString)) {
+                color = ColorParser.parse(colorString);
+            }
 
             // get background color attribute
             String backgroundString = parser.getAttributeValue(ns, "background");
-            int background = parseColor(backgroundString);
+            Integer background = null;
+            if (!TextUtils.isEmpty(backgroundString)) {
+                background = ColorParser.parse(backgroundString);
+            }
 
             // get text size attribute
             int size = Tag.NOT_SET_INTEGER;
@@ -100,28 +104,24 @@ public class TagParser {
             }
 
             String text = parser.nextText();
-            return new Tag.Builder().text(text)
-                    .textColor(color)
+            Tag.Builder builder = new Tag.Builder()
+                    .text(text)
                     .textSize(size)
                     .bold(bold)
                     .italic(italic)
-                    .underline(underline)
-                    .backgroundColor(background)
-                    .build();
+                    .underline(underline);
+            if (color != null) {
+                builder.textColor(color.intValue());
+            }
+            if (background != null) {
+                builder.backgroundColor(background.intValue());
+            }
+            return builder.build();
         } finally {
             if (reader != null) {
                 reader.close();
             }
         }
-    }
-
-    private static int parseColor(String colorInput) {
-        if (TextUtils.isEmpty(colorInput)) return Tag.NOT_SET_INTEGER;
-        Matcher matcher = COLOR_PATTERN.matcher(colorInput);
-        if (matcher.matches()) {
-            return Color.parseColor(colorInput);
-        }
-        return Tag.NOT_SET_INTEGER;
     }
 
 }

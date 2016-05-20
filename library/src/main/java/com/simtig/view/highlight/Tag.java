@@ -30,18 +30,15 @@ public class Tag {
         @StringRes
         int textId;
         boolean bold, italic, underline;
-        int textColor;
+        Integer textColor; // null for not set and value for text color
         @ColorRes
         int textColorId;
-        int backgroundColor;
+        Integer backgroundColor; // null for not set and value for background color
         @ColorRes
         int backgroundColorId;
         float textSize;
         @DimenRes
         int textSizeId;
-
-        boolean isTextColorSet;
-        boolean isBackgroundColorSet;
 
         boolean highlight;
 
@@ -91,7 +88,6 @@ public class Tag {
         }
 
         public Builder textColor(int textColor) {
-            isTextColorSet = true;
             this.textColor = textColor;
             flagAsHighLight();
             return this;
@@ -107,7 +103,6 @@ public class Tag {
         }
 
         public Builder backgroundColor(int backgroundColor) {
-            isBackgroundColorSet = true;
             this.backgroundColor = backgroundColor;
             flagAsHighLight();
             return this;

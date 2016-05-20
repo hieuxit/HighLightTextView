@@ -3,6 +3,7 @@ package com.simtig.view.highlight;
 import android.content.Context;
 import android.content.res.Resources;
 import android.content.res.TypedArray;
+import android.support.annotation.StringRes;
 import android.support.v4.content.ContextCompat;
 import android.text.Spannable;
 import android.text.SpannableString;
@@ -63,6 +64,11 @@ public class HighLightTextView extends TextView {
         setMovementMethod(LinkMovementMethod.getInstance());
     }
 
+    public void setHighlightText(@StringRes int resId) {
+        String highlightText = getResources().getString(resId);
+        setHighlightText(highlightText);
+    }
+
     public void setHighlightText(String highlightText) {
         this.mHighlightText = highlightText;
         List<Tag> tagList = TagParser.parse(highlightText, getResources().getDisplayMetrics());
@@ -85,10 +91,10 @@ public class HighLightTextView extends TextView {
             float textSize = tagBuilder.textSize > 0 ? tagBuilder.textSize : (tagBuilder.textSizeId > 0 ?
                     res.getDimensionPixelSize(tagBuilder.textSizeId) : getTextSize());
 
-            int textColor = tagBuilder.isTextColorSet ? tagBuilder.textColor : (tagBuilder.textColorId > 0 ?
+            int textColor = tagBuilder.textColor != null ? tagBuilder.textColor : (tagBuilder.textColorId > 0 ?
                     ContextCompat.getColor(getContext(), tagBuilder.textColorId) : getCurrentTextColor());
 
-            int backgroundColor = tagBuilder.isBackgroundColorSet ? tagBuilder.backgroundColor : (tagBuilder.backgroundColorId > 0 ?
+            int backgroundColor = tagBuilder.backgroundColor != null ? tagBuilder.backgroundColor : (tagBuilder.backgroundColorId > 0 ?
                     ContextCompat.getColor(getContext(), tagBuilder.backgroundColorId) : 0);
 
 
