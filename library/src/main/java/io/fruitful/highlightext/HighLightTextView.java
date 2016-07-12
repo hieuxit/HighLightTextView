@@ -1,4 +1,4 @@
-package com.simtig.view.highlight;
+package io.fruitful.highlightext;
 
 import android.content.Context;
 import android.content.res.Resources;
@@ -14,8 +14,6 @@ import android.text.method.LinkMovementMethod;
 import android.util.AttributeSet;
 import android.view.View;
 import android.widget.TextView;
-
-import com.simtig.view.R;
 
 import java.util.List;
 

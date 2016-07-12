@@ -1,4 +1,4 @@
-package com.simtig.view.highlight;
+package io.fruitful.highlightext;
 
 import android.support.annotation.ColorRes;
 import android.support.annotation.DimenRes;

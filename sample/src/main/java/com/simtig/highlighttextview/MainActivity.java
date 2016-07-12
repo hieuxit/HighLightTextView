@@ -3,7 +3,7 @@ package com.simtig.highlighttextview;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
-import com.simtig.view.highlight.HighLightTextView;
+import io.fruitful.highlightext.HighLightTextView;
 
 public class MainActivity extends AppCompatActivity {
 

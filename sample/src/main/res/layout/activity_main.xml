@@ -11,12 +11,12 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.simtig.highlighttextview.MainActivity">
 
-    <com.simtig.view.highlight.HighLightTextView
+    <io.fruitful.highlightext.HighLightTextView
         android:id="@+id/hltv1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
-    <com.simtig.view.highlight.HighLightTextView
+    <io.fruitful.highlightext.HighLightTextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:highlightText="@string/text1" />

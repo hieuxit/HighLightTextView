@@ -1,4 +1,4 @@
-package com.simtig.view.highlight;
+package io.fruitful.highlightext;
 
 import android.text.TextPaint;
 import android.text.style.ClickableSpan;
