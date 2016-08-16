@@ -1,4 +1,4 @@
-package com.simtig.view.highlight;
+package io.fruitful.highlightext;
 
 import android.content.Context;
 import android.content.res.Resources;
@@ -15,15 +15,13 @@ import android.util.AttributeSet;
 import android.view.View;
 import android.widget.TextView;
 
-import com.simtig.view.R;
-
 import java.util.List;
 
 /**
  * TextView support highlight, clickable a part of TextView. You do not need handle it by code using Spannable, or Html.fromHtml.
- * Just input into 'tag_text' field on xml layout or using method {@link #setHighlightText(String)}
- * <p>
- * The text tag must be define well form.
+ * Just input into 'tag_text' field on xml layout or using method {@link #setHighlightText(int)} or {@link #setHighlightText(String)}
+ * <p/>
+ * The text tag must be define in well form.
  * <ul>
  * <li>In xml it's must be define in a {@code <![CDATA[ ]]>} tag. Because if no, android remove xml tag when read it from xml</li>
  * <li>Text input contains normal text and highlight text - that cover on a <b>'tag'</b> xml like
@@ -76,6 +74,10 @@ public class HighLightTextView extends TextView {
             setText(null);
             return;
         }
+        setTags(tagList);
+    }
+
+    public void setTags(List<Tag> tagList) {
         Resources res = getResources();
         SpannableStringBuilder builder = new SpannableStringBuilder();
         int tagCount = tagList.size();

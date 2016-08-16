@@ -1,4 +1,4 @@
-package com.simtig.view.highlight;
+package io.fruitful.highlightext;
 
 import android.util.DisplayMetrics;
 import android.util.TypedValue;
