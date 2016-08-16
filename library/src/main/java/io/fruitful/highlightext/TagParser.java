@@ -35,8 +35,7 @@ public class TagParser {
             // If between 2 tag has a plain text
             if (start > end) {
                 // add a normal tag
-                Tag tag = new Tag.Builder().text(input.substring(end, start))
-                        .build();
+                Tag tag = new Tag.Builder().text(input.substring(end, start)).build();
                 result.add(tag);
             }
             end = matcher.end();
@@ -48,6 +47,11 @@ public class TagParser {
             } catch (IOException e) {
                 e.printStackTrace();
             }
+        }
+        if (end < input.length()) {
+            // add a normal tag
+            Tag tag = new Tag.Builder().text(input.substring(end, input.length())).build();
+            result.add(tag);
         }
         return result;
     }
