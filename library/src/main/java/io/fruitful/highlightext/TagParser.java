@@ -28,28 +28,26 @@ public class TagParser {
         List<Tag> result = new ArrayList<>();
 
         int start = 0;
-        int end = input.length();
+        int end = 0;
 
         while (matcher.find()) {
-            int matcherStart = matcher.start();
-            int matcherEnd = matcher.end();
-            if (start < matcherStart) {
+            start = matcher.start();
+            // If between 2 tag has a plain text
+            if (start > end) {
                 // add a normal tag
-                Tag tag = new Tag.Builder().text(input.substring(start, matcherStart))
+                Tag tag = new Tag.Builder().text(input.substring(end, start))
                         .build();
                 result.add(tag);
             }
-
+            end = matcher.end();
             try {
-                Tag tag = tagDeserialize(input.substring(matcherStart, matcherEnd), dm);
+                Tag tag = tagDeserialize(input.substring(start, end), dm);
                 result.add(tag);
             } catch (XmlPullParserException e) {
                 e.printStackTrace();
             } catch (IOException e) {
                 e.printStackTrace();
             }
-
-            start = matcherEnd;
         }
         return result;
     }
